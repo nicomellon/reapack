@@ -1,0 +1,14 @@
+<?xml name="NM Scripts" version="1.0" encoding="utf-8"?>
+<index version="1" name="NM Scripts">
+  <category name="Example">
+    <reapack name="Show/Hide children of selected track in TCP" type="script" desc="Print Hello World">
+      <version name="1.0" author="NM">
+         <source>https://github.com/nicomellon/reapack/raw/9d0a1262ba06953469e77f3593f712b5ae87b981/hideChildrenOfSelectedTrackinTCP.lua</source>
+         <changelog><![CDATA[Initial Release]]></changelog>
+      </version>
+    </reapack>
+  </category>
+  <metadata>
+    <link rel="github">https://github.com/nicomellon</link>
+  </metadata>
+</index>

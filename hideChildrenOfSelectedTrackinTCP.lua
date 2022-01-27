@@ -1,39 +1,45 @@
 --[[
-  File Imports
+  Author: Nico Mellon
+  Description: Hides all children of the first selected track 
 ]]
-
-function reaperDoFile(file)
-  -- necessary code to import other lua files by relative path
-  local info = debug.getinfo(1,'S')
-  script_path = info.source:match[[^@?(.*[\/])[^\/]-$]]
-  dofile(script_path .. file)
-end
-
-reaperDoFile("classes/Track.lua") -- class for media tracks
-reaperDoFile("classes/Project.lua") -- class for reaper project
-
---[[
-  Main script
-]]
-
-local project = Project:new()
 
 -- get first selected media track
-local selected = Track:new(reaper.GetSelectedTrack(0, 0))
+local selectedTrack = reaper.GetSelectedTrack(0, 0)
 
-local i = selected.num
+-- if no tracks are selected, end the script
+if not selectedTrack then return end
 
-while i < project.trackCount do
-  -- loop through child tracks and hide them
+-- if the selected track isn't a folder, end the script
+if reaper.GetMediaTrackInfo_Value(selectedTrack, "I_FOLDERDEPTH") ~= 1 then return end
 
-  child = Track:new(reaper.GetTrack(0, i))
+-- get selected track's depth
+local selectedDepth = reaper.GetTrackDepth(selectedTrack)
+
+-- count current number of tracks in the project
+local trackCount = reaper.CountTracks()
+
+-- start a counter at the index of the next track (first child track)
+local i = reaper.GetMediaTrackInfo_Value(selectedTrack, "IP_TRACKNUMBER")
+
+-- loop through child tracks and hide them
+while i < trackCount do
+
+  -- get next track
+  local nextTrack = reaper.GetTrack(0, i)
+
+  -- get next track's depth
+  local nextDepth = reaper.GetTrackDepth(nextTrack)
   
-  if child.depth <= selected.depth then break end
+  -- check if next track is a child of the selected track
+  if nextDepth <= selectedDepth then break end
   
-  child:hideInTCP()
+  -- hide next track in TCP
+  reaper.SetMediaTrackInfo_Value(nextTrack, "B_SHOWINTCP", 0)
   
   i = i + 1
   
 end
 
-project.updateWindow() -- update reaper view
+-- update reaper's window
+reaper.UpdateArrange()
+reaper.TrackList_AdjustWindows(false)

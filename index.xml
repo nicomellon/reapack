@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <index version="1" name="NM scripts">
   <category name="Tracks Properties">
-    <reapack name="NM_Toggle hide children of first selected track" type="script" desc="Shows or hides all children of the first selected track, depending on whether the track is in normal or collapsed state.">
+    <reapack name="NM_Toggle hide children of first selected track" type="script">
       <version name="1.0.0" author="NM">
         <changelog><![CDATA[+ Initial Release]]></changelog>
         <source main="main">https://github.com/nicomellon/reapack/raw/64678d21a646f5c03e982e07709edf73fe4009b0/Tracks%20Properties/NM_toggle%20hide%20children%20of%20selected%20track%20in%20TCP.lua</source>

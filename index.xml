@@ -5,7 +5,6 @@
     on whether the track is in normal or collapsed state.">
       <version name="1.0.0" author="NM">
          <source main="main">https://github.com/nicomellon/reapack/raw/64678d21a646f5c03e982e07709edf73fe4009b0/Tracks%20Properties/NM_toggle%20hide%20children%20of%20selected%20track%20in%20TCP.lua</source>
-         <changelog><![CDATA[Initial Release]]></changelog>
       </version>
     </reapack>
   </category>

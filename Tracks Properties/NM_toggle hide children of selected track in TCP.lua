@@ -1,6 +1,7 @@
 --[[
   Author: Nico Mellon
-  Description: Hides all children of the first selected track 
+  Description: Shows or hides all children of the first selected track, depending
+    on whether the track is in normal or collapsed state. 
 ]]
 
 -- get first selected media track
